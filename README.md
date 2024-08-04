@@ -1,4 +1,4 @@
-# LUTFIADYSH TECHNICAL TEST 
+# LUTFIADYSH BGR TECHNICAL TEST 
 
 ### specification
     Backend : NodeJS
@@ -24,3 +24,4 @@
         username : kasir
         password : 12345678
 
+### https://drive.google.com/file/d/1C3KwPjoM-32S24VcFr4BJv3p4lkzhQzp/view?usp=sharing
