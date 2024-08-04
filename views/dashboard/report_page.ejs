@@ -1,0 +1,27 @@
+<%- include('../partials/head.ejs'); %>
+<div class="min-h-full">
+    <%- include('./components/dashboard_header.ejs'); %>
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Report</h1>
+      </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <% rows.forEach(element => { %>
+            <div class="flex justify-between">
+                <div class="my-5 border-b border-gray-900/10 pb-12">
+                    <p class="text-black font-bold"><%= element.invoice %></p>
+                    <p class="text-black font-bold"><%= element.product_name %></p>
+                    <p class="text-black font-bold"><%= element.qty %> PCS</p>
+                </div>
+                <div>
+                    <p class="text-black font-bold">Total : <%= element.total %></p>
+                    <p class="text-black font-bold">After Tax ( 11% ) : <%= element.totalAfterTax %></p>
+                    <p class="text-red-300 font-bold"><%= element.created_at %></p>
+                </div>
+            </div>
+           <% }); %>
+        </div>
+    </main>
+</div>

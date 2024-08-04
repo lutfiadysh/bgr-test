@@ -1,0 +1,60 @@
+<%- include('../partials/head.ejs'); %>
+<div class="min-h-full">
+    <%- include('./components/dashboard_header.ejs'); %>
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Checkout</h1>
+
+      </div>
+    </header>
+    <main>
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <% cart.forEach(element => { %>
+               <div class="flex justify-between align-bottom my-5 border-b border-gray-900/10 pb-12">
+                <div class="flex">
+                    <img class="h-20 w-20 mr-2 flex-none rounded-md bg-gray-50" src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg" alt="">
+                    <div class="col">
+                        <p class="text-black font-semibold"><%= element.product_name %></p>
+                        <p class="text-gray-400"><%= element.product_description %></p>
+                        <p class="text-gray-500 font-semibold text-sm mt-3">Rp. <%= element.product_price %></p>
+                    </div>
+                </div>
+                <p class="font-semibold">Total : Rp.<%= element.product_price * element.qty  %></p>
+               </div>
+           <% }); %>
+           <div class="flex justify-end">
+            <div class="justify-items-end">
+                <p class="text-black font-bold text-md">Total : Rp.<%= total  %></p>
+                <p class="text-black font-bold text-md">Subtotal : Rp.<%= totalTax  %></p>
+            </div>
+           </div>
+           <form action="/checkout" method="POST">
+            <div class="flex justify-between mt-5">
+                <fieldset>
+                    <p class="text-sm font-semibold leading-6 text-gray-900">Payment</p>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">Please select payment method.</p>
+                    <div class="mt-6 space-y-6">
+                      <div class="flex items-center gap-x-3">
+                        <input id="cash-payment" name="payment" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="cash-payment">
+                        <label for="cash-payment" class="block text-sm font-medium leading-6 text-gray-900">Cash</label>
+                      </div>
+                      <div class="flex items-center gap-x-3">
+                        <input id="debit-payment" name="payment" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="debit-payment">
+                        <label for="debit-payment" class="block text-sm font-medium leading-6 text-gray-900">Debit</label>
+                      </div>
+                      <div class="flex items-center gap-x-3">
+                        <input id="credit-payment" name="payment" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="credit-payment">
+                        <label for="credit-payment" class="block text-sm font-medium leading-6 text-gray-900">Credit</label>
+                      </div>
+                    </div>
+                  </fieldset>
+                  <input type="hidden" name="total" value="<%= total  %>">
+                  <input type="hidden" name="subtotal" value="<%= totalTax  %>">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <button type="submit" class="mt-5 bg-emerald-500 hover:bg-emerald-700 px-4 py-2 rounded-full text-white text-sm font-bold h-10">Proceed</button>
+               </div>
+           </form>
+        
+        </div>
+    </main>  
+</div>

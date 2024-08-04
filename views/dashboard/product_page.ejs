@@ -1,0 +1,41 @@
+<%- include('../partials/head.ejs'); %>
+<div class="min-h-full">
+    <%- include('./components/dashboard_header.ejs'); %>
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Product</h1>
+        <a href="/add-product" class="bg-sky-500 hover:bg-sky-700 px-4 py-2 rounded-full text-white text-sm font-bold">Add Product</a>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <!-- Your content -->
+
+         <ul role="list" class="divide-y divide-gray-100">
+            <% result.forEach(e => { %>
+                
+        
+            <li class="flex justify-between gap-x-6 py-5">
+              <div class="flex min-w-0 gap-x-4">
+                <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg" alt="">
+                <div class="min-w-0 flex-auto">
+                  <p class="text-sm font-semibold leading-6 text-gray-900"><%= e.name %></p>
+                  <p class="mt-1 truncate text-xs leading-5 text-gray-500"><%= e.description %></p>
+                </div>
+              </div>
+            <div class="flex">
+                <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                    <p class="text-sm leading-6 text-gray-900">Rp.<%= e.price %></p>
+                    <p class="mt-1 text-xs leading-5 text-gray-500">Stock : <%= e.stock %></p>
+                  </div >
+                  <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end ml-10">
+                    <a href="/edit-product/<%=e.id %>" class="bg-yellow-500 hover:bg-yellow-700 px-4 py-2 rounded-full text-white text-sm font-bold">Edit</a>
+                  </div>
+            </div>
+            </li>
+    <%    }); %>
+          </ul>
+          
+      </div>
+    </main>
+  </div>

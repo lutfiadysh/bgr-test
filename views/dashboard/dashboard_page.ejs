@@ -1,0 +1,68 @@
+<%- include('../partials/head.ejs'); %>
+<div class="min-h-full">
+    <%- include('./components/dashboard_header.ejs'); %>
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+
+<div class="bg-white">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div class="flex justify-between">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Shop</h2>
+        <% if(cart.length>0) {%>
+        <a href="/checkout" class="mt-5 bg-emerald-500 hover:bg-emerald-700 px-4 py-2 rounded-full text-white text-sm font-bold ">Checkout</a>
+        <% } %>
+      </div>
+  
+      <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <% product.forEach(e => {%>
+          <div>
+            <div class="group relative">
+              <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+              </div>
+              <div class="mt-4 flex justify-between">
+                <div>
+                  <h3 class="text-xl text-gray-900 font-bold">
+                    <!-- <a href="#"> -->
+                      <span aria-hidden="true" class="absolute inset-0"></span>
+                    <%= e.name %>
+                    <!-- </a> -->
+                  </h3>
+                  <p class="mt-1 text-sm text-gray-500"><%= e.description %></p>
+                  <p class="mt-1 text-sm text-gray-500 mb-5">Stock : <%= e.stock %></p>
+
+                </div>
+                <p class="text-sm font-medium text-gray-900"><%= e.price %></p>
+
+              </div>
+
+            </div>
+            <% if(cart.some((el) => el.product_id === e.id)) { %>
+              <div class="flex justify-between align-middle">
+                <a href="/min-cart/<%= e.id %>" class="mt-5 bg-red-500 hover:bg-red-700 px-4 py-2 rounded-full text-white text-sm font-bold ">-</a>
+                <p class="mt-6"><%= cart.find(ct => ct.product_id === e.id).qty  %></p>
+
+                <a href="/add-cart/<%= e.id %>" class="mt-5 bg-emerald-500 hover:bg-emerald-700 px-4 py-2 rounded-full text-white text-sm font-bold ">+</a>
+              </div>
+              <% } else { %>
+            <a href="/add-cart/<%= e.id %>" class="mt-5 bg-emerald-500 hover:bg-emerald-700 px-4 py-2 rounded-full text-white text-sm font-bold ">+</a>
+              <% } %>
+          </div>
+        <% }); %>
+     
+  
+      </div>
+    </div>
+  </div>
+  
+      </div>
+
+    </main>
+  </div>
+  
+  
